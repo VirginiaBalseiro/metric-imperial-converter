@@ -23,13 +23,16 @@ module.exports = function (app) {
       var returnNum = convertHandler.convert(initNum, initUnit);
       var returnUnit = convertHandler.getReturnUnit(initUnit);
       var toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-      if (initNum == 'invalid number') {
+      if (initNum == 'invalid number' && initUnit.toLowerCase() == 'invalid unit') {
+        res.json('invalid number and unit'); 
+      }
+      else if (initNum == 'invalid number') {
         res.json('invalid number'); 
       }
-      if (initUnit.toLowerCase() == 'invalid unit') {
+      else if (initUnit.toLowerCase() == 'invalid unit') {
         res.json('invalid unit');
       }
-      res.json({initNum: initNum, initUnit: initUnit, returnUnit: returnUnit, string: toString});
+      res.json({initNum: initNum, initUnit: initUnit, returnNum: parseFloat(returnNum.toFixed(5)), returnUnit: returnUnit, string: toString});
     });
     
 };

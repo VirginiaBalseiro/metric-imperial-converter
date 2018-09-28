@@ -39,6 +39,7 @@ function ConvertHandler() {
     var units = ['mi', 'km', 'gal', 'l', 'kg', 'lbs'];
     //console.log('input', input);
     var unit = input.slice(input.match(/[a-z]/i).index);
+    unit = unit.toLowerCase()
     //console.log('unit', unit)
     if (units.indexOf(unit) != -1) {
       result = unit;
@@ -130,10 +131,13 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    if (initNum == 'invalid number') {
+    if (initNum == 'invalid number' && initUnit.toLowerCase() == 'invalid unit') {
+        result = 'invalid number and unit'; 
+      }
+    else if (initNum == 'invalid number') {
       result = 'invalid number'; 
     }
-    if (initUnit.toLowerCase() == 'invalid unit') {
+    else if (initUnit.toLowerCase() == 'invalid unit') {
       result = 'invalid unit'
     }
     else {
