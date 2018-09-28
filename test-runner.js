@@ -42,6 +42,7 @@ fs.readdirSync(testDir).filter(function(file){
     return file.substr(-3) === '.js';
 
 }).forEach(function(file){
+    //console.log(file)
     mocha.addFile(
         path.join(testDir, file)
     );
